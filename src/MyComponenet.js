@@ -16,282 +16,322 @@ function MyComponent() {
 
     // Create an instance of the smart contract
     //const contractAddress = '0x0165878A594ca255338adfa4d48449f69242Eb8F'; // Replace with the address of your smart contract
-    const contractAddress = '0xa513E6E4b8f2a923D98304ec87F64353C4D5C853'; // Replace with the address of your smart contract
+    const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'; // Replace with the address of your smart contract
     const abi_ = [
-	{
-		"inputs": [],
-		"name": "BET_MIN",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "REVEAL_TIMEOUT",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "bothPlayed",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "bothRevealed",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getContractBalance",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getFinalOutput",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getOutcome",
-		"outputs": [
-			{
-				"internalType": "enum RockPaperScissors.Outcomes",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getPlayOutput",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getRegisterValue",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getRevealOutput",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "initialBet",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "listOfPlayers",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "MyAddr",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "OppAddr",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "bet",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "encryptedMove",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "enum RockPaperScissors.Moves",
-				"name": "movePlayer",
-				"type": "uint8"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "opponentJoined",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "encrMove",
-				"type": "bytes32"
-			}
-		],
-		"name": "play",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "register",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "clearMove",
-				"type": "string"
-			}
-		],
-		"name": "reveal",
-		"outputs": [
-			{
-				"internalType": "enum RockPaperScissors.Moves",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "revealTimeLeft",
-		"outputs": [
-			{
-				"internalType": "int256",
-				"name": "",
-				"type": "int256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "whoAmI",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-]
-
+		{
+			"inputs": [],
+			"name": "BET_MIN",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "REVEAL_TIMEOUT",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "bothPlayed",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "bothRevealed",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "checkTimeout_register",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getContractBalance",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getFinalOutput",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getOutcome",
+			"outputs": [
+				{
+					"internalType": "enum RockPaperScissors.Outcomes",
+					"name": "",
+					"type": "uint8"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getPlayOutput",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getRegisterValue",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getRevealOutput",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "initialBet",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "listOfPlayers",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "MyAddr",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "OppAddr",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "bet",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bytes32",
+					"name": "encryptedMove",
+					"type": "bytes32"
+				},
+				{
+					"internalType": "enum RockPaperScissors.Moves",
+					"name": "movePlayer",
+					"type": "uint8"
+				},
+				{
+					"internalType": "uint256",
+					"name": "timeout_register",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "timeout_play",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "timeout_reveal",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "opponentJoined",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes32",
+					"name": "encrMove",
+					"type": "bytes32"
+				}
+			],
+			"name": "play",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "register",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "clearMove",
+					"type": "string"
+				}
+			],
+			"name": "reveal",
+			"outputs": [
+				{
+					"internalType": "enum RockPaperScissors.Moves",
+					"name": "",
+					"type": "uint8"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "revealTimeLeft",
+			"outputs": [
+				{
+					"internalType": "int256",
+					"name": "",
+					"type": "int256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "timeout",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "whoAmI",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		}
+	]
     const contract = new web3.eth.Contract(abi_, contractAddress);
     setContract(contract);
     const addresses = await web3.eth.getAccounts();
@@ -323,6 +363,11 @@ function MyComponent() {
     setResult(result.toString());
   }
 
+  async function checkTimeout_register(){
+	const result = await contract.methods.checkTimeout_register().call({from: address});
+	setResult(result.toString());
+  }
+
 
   function generateSHA256Hash(string) {
     const hash = CryptoJS.SHA256(string);
@@ -337,6 +382,10 @@ function MyComponent() {
     setResult(call_result);
   }
 
+  async function checkTimeout_play(){
+	const result = await contract.methods.checkTimeout_play().call({from: address});
+	setResult(result.toString());
+  }
   async function getContractBalance(){
     const result = await contract.methods.getContractBalance().call({from: address});
     setResult(result.toString());
@@ -354,6 +403,10 @@ function MyComponent() {
     console.log(result);
     const call_result = await contract.methods.getRevealOutput().call();
     setResult(call_result);
+  }
+  async function checkTimeout_reveal(){
+	const result = await contract.methods.checkTimeout_reveal().call({from: address});
+	setResult(result.toString());
   }
   
   async function minimumBet(){
@@ -420,18 +473,33 @@ function MyComponent() {
       <button onClick={register}>Register</button>
       <br/>
       <br/>
-      <button onClick={opponentJoined}>Opponent Joined</button>
+	  <div>
+		<button onClick={opponentJoined} style={{ marginRight: '15px' }}>Opponent Joined</button> 
+		<button onClick={checkTimeout_register}Check timeout></button>
+	  </div>
+      {/* <button onClick={opponentJoined}>Opponent Joined</button>
       <br/>
+      <br/> */}
+	  {/* <button onClick={checkTimeout_register}Check timeout></button> */}
+
       <br/>
       <button onClick={whoAmI}>Who Am I</button>
       <br/>
       <br/>
-      <input onChange={onPlayTextChange} style={{ marginRight: '15px' }}></input>
-      <button onClick={play}>Play</button>
+      
+      <div>
+	  	<input onChange={onPlayTextChange} style={{ marginRight: '15px' }}></input>
+	  	<button onClick={play} style={{ marginRight: '15px' }}>Play</button>
+		<button onClick={checkTimeout_play}Check timeout></button>
+	  </div>
+	  
       <br/>
-      <br/>
-      <button onClick={reveal}>Reveal</button>
-      <br/>
+
+	  <div>
+	  	<button onClick={reveal} style={{ marginRight: '15px' }}>Reveal</button>
+		<button onClick={checkTimeout_reveal}Check timeout></button>
+	  </div>
+	
       <br/>
       <button onClick={bothPlayed}>Both Played</button>
       <br/>
