@@ -9,6 +9,7 @@ function MyComponent() {
   const [playText, setPlayText] = useState(null);
   const [bet, setBet] = useState(null);
 
+
   async function connectToContract() {
     // Create an instance of the web3 provider using the MetaMask provider
     const web3 = new Web3(window.ethereum);
@@ -16,7 +17,7 @@ function MyComponent() {
 
     // Create an instance of the smart contract
     //const contractAddress = '0x0165878A594ca255338adfa4d48449f69242Eb8F'; // Replace with the address of your smart contract
-    const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'; // Replace with the address of your smart contract
+    const contractAddress = '0x0165878A594ca255338adfa4d48449f69242Eb8F'; // Replace with the address of your smart contract
     const abi_ = [
 		{
 			"inputs": [],
@@ -72,7 +73,14 @@ function MyComponent() {
 		},
 		{
 			"inputs": [],
-			"name": "checkTimeout_register",
+			"name": "checkTimeout_play",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "checkTimeout_play_fe",
 			"outputs": [
 				{
 					"internalType": "string",
@@ -80,7 +88,47 @@ function MyComponent() {
 					"type": "string"
 				}
 			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "checkTimeout_register",
+			"outputs": [],
 			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "checkTimeout_register_fe",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "checkTimeout_reveal",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "checkTimeout_reveal_fe",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
 			"type": "function"
 		},
 		{
@@ -294,19 +342,6 @@ function MyComponent() {
 		},
 		{
 			"inputs": [],
-			"name": "revealTimeLeft",
-			"outputs": [
-				{
-					"internalType": "int256",
-					"name": "",
-					"type": "int256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [],
 			"name": "timeout",
 			"outputs": [
 				{
@@ -336,11 +371,7 @@ function MyComponent() {
     setContract(contract);
     const addresses = await web3.eth.getAccounts();
     setAddress(addresses[0]);
-    // await contract.methods.setData(10).send({
-    //     from: addresses[0]   
-    // });
 
-    // Call a function on the smart contract
     
   }
   
@@ -364,8 +395,10 @@ function MyComponent() {
   }
 
   async function checkTimeout_register(){
-	const result = await contract.methods.checkTimeout_register().call({from: address});
-	setResult(result.toString());
+	const result = await contract.methods.checkTimeout_register().send({from: address});
+	//setResult(result.toString());
+	const call_result = await contract.methods.checkTimeout_register_fe().call({from: address});
+    setResult(call_result);
   }
 
 
@@ -383,8 +416,10 @@ function MyComponent() {
   }
 
   async function checkTimeout_play(){
-	const result = await contract.methods.checkTimeout_play().call({from: address});
-	setResult(result.toString());
+	const result = await contract.methods.checkTimeout_play().send({from: address});
+	//setResult(result.toString());
+	const call_result = await contract.methods.checkTimeout_play_fe().call({from: address});
+    setResult(call_result);
   }
   async function getContractBalance(){
     const result = await contract.methods.getContractBalance().call({from: address});
@@ -405,8 +440,10 @@ function MyComponent() {
     setResult(call_result);
   }
   async function checkTimeout_reveal(){
-	const result = await contract.methods.checkTimeout_reveal().call({from: address});
-	setResult(result.toString());
+	const result = await contract.methods.checkTimeout_reveal().send({from: address});
+	//setResult(result.toString());
+	const call_result = await contract.methods.checkTimeout_reveal_fe().call({from: address});
+    setResult(call_result);
   }
   
   async function minimumBet(){
@@ -423,21 +460,6 @@ function MyComponent() {
     const result = await contract.methods.bothRevealed().call({from: address});
     setResult(result.toString());
   }
-  
-  // async function initialBet(){
-  //   const result = await contract.methods.minimumBet().send({from: address});
-  //   setResult(result);
-  // }
-  
-  // async function revealTimeLeft(){
-  //   const result = await contract.methods.revealTimeLeft().call();
-  //   setResult(result.toString());
-  // }
-  
-  // async function revealTimeOut(){
-  //   const result = await contract.methods.minimumBet().send({from: address});
-  //   setResult(result);
-  // }
   
   async function whoAmI(){
     const result = await contract.methods.whoAmI().call({from: address});
@@ -475,7 +497,7 @@ function MyComponent() {
       <br/>
 	  <div>
 		<button onClick={opponentJoined} style={{ marginRight: '15px' }}>Opponent Joined</button> 
-		<button onClick={checkTimeout_register}Check timeout></button>
+		<button onClick={checkTimeout_register}>Check timeout</button>
 	  </div>
       {/* <button onClick={opponentJoined}>Opponent Joined</button>
       <br/>
@@ -490,14 +512,14 @@ function MyComponent() {
       <div>
 	  	<input onChange={onPlayTextChange} style={{ marginRight: '15px' }}></input>
 	  	<button onClick={play} style={{ marginRight: '15px' }}>Play</button>
-		<button onClick={checkTimeout_play}Check timeout></button>
+		<button onClick={checkTimeout_play}>Check timeout</button>
 	  </div>
 	  
       <br/>
 
 	  <div>
 	  	<button onClick={reveal} style={{ marginRight: '15px' }}>Reveal</button>
-		<button onClick={checkTimeout_reveal}Check timeout></button>
+		<button onClick={checkTimeout_reveal}>Check timeout</button>
 	  </div>
 	
       <br/>
@@ -509,18 +531,6 @@ function MyComponent() {
       <br/>
       <button onClick={getContractBalance}>Get Contract Balance</button>
       <br/>
-      {/* <br/>
-      <button onClick={initialBet}>Initial Bet</button>
-      <br/>
-      <br/>
-      <button onClick={revealTimeOut}>Reveal Time out</button>
-      <br/>
-      <br/> */}
-      {/* <button onClick={revealTimeLeft}>Reveal Time Left</button>
-      <br/> */}
-      {/* <br/>
-      <button onClick={resetGame}>Reset</button>
-      <br/> */}
       <br/>
       <button onClick={getOutcome}>Get OutCome</button>
       {result && (<div><p>Result: {JSON.stringify(result)}</p>
